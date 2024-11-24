@@ -10,18 +10,16 @@
 
 # 🛠️ Installation and Usage
 
-
 We provide two ways to deploy Conscious Cravings:
 
-1. Cloning the GitHub repository (for developers and tinkerers).
+1. Cloning the GitHub repository
 
-2. Using the prebuilt Docker Hub image (for quick and easy deployment).
-
+2. Using the prebuilt Docker Hub image
 
 # Option 1: Clone and Build from GitHub
 ## Requirements:
-Docker installed on your system
-Optionally, Git installed for cloning the repository
+- Docker
+- Git
 
 ## Steps:
 1. Clone the GitHub repository:
