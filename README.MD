@@ -1,6 +1,5 @@
 ![alt text](static/githublogo.jpg)
 
-
 🍽️ Welcome to Conscious Cravings - where you get to curate a world where your cravings are aligned with your wellness goals. We take the concept of "selfertising" and present you with a personal, always-on visual reminder of the foods you choose to inspire and motivate healthier eating habits 
 
 🥗 Let your selections guide you toward mindful choices, turning conscious cravings into powerful, everyday actions. Start building your food inspiration now, and watch how the simple power of imagery transforms your relationship with what you eat!
@@ -59,4 +58,6 @@ We provide two ways to deploy Conscious Cravings:
 
 - http://127.0.0.1:8000/
 
+
+![alt text](static/spinach.jpg)
 
