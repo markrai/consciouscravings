@@ -58,6 +58,15 @@ We provide two ways to deploy Conscious Cravings:
 
 - http://127.0.0.1:8000/
 
+# ⚙️ Configuration
+
+- Drop photos of your choosing for any hour you'd like:
+
+![alt text](static/hours.jpg)
+
+- In the index.html, change the frequency of how often the images for that hour change, in milliseconds on this line:
+`setInterval(displayNextImage, 10000);`
+
 
 ![alt text](static/spinach.jpg)
 
