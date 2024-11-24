@@ -1,0 +1,145 @@
+<body>
+    <img id="logo" src="static/cclogofull.png" alt="CC Logo">
+    <img id="food-image" src="" alt="Food Item">
+    <div id="current-time">
+        <div id="time"></div>
+        <div id="date"></div>
+    </div>
+
+    <style>
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            background-color: #000;
+            /* Fallback background if no image loads */
+        }
+
+        img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        /* Current time and date display */
+        #current-time {
+            position: absolute;
+            bottom: 10px;
+            right: 20px;
+            background-color: rgba(0, 0, 0, 0.5);
+            color: white;
+            font-family: Arial, sans-serif;
+            font-size: 1.5rem;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        #time {
+            font-size: 1.8rem;
+            opacity: 80%;
+        }
+
+        #date {
+            font-size: 1.0rem;
+            margin-top: 5px;
+            opacity: 80%;
+        }
+
+
+        #logo {
+            position: fixed;
+            bottom: 10px;
+            left: 10px;
+            width: 200px;
+            height: auto;
+            z-index: 10;
+        }
+    </style>
+
+    <script>
+        const baseUrl = "http://127.0.0.1:8000/images"; // Python server base URL
+        const hours = [
+            "12am", "1am", "2am", "3am", "4am", "5am",
+            "6am", "7am", "8am", "9am", "10am", "11am",
+            "12pm", "1pm", "2pm", "3pm", "4pm", "5pm",
+            "6pm", "7pm", "8pm", "9pm", "10pm", "11pm"
+        ];
+
+        let imageIndex = 0;
+        let currentImageList = [];
+
+        async function updateTime() {
+            const now = new Date();
+            const currentHourIndex = now.getHours();
+            const currentHourDir = hours[currentHourIndex];
+
+            // Format the time as before
+            const formattedTime = now.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", hour12: true });
+
+            // Format the date to "Nov 24 2024"
+            const options = { month: "short", day: "numeric", year: "numeric" };
+            const formattedDate = now.toLocaleDateString("en-US", options).replace(",", "");
+
+            // Update the DOM
+            document.getElementById("time").textContent = formattedTime;
+            document.getElementById("date").textContent = formattedDate;
+
+            console.log(`Fetching images for the current hour: ${currentHourDir}`);
+            await loadImagesForHour(currentHourDir);
+        }
+
+
+        async function loadImagesForHour(hourDir) {
+            const listUrl = `${baseUrl}/${hourDir}/`;
+
+            try {
+                const response = await fetch(listUrl);
+                if (response.ok) {
+                    const files = await response.json(); // List of image files
+                    if (files.length > 0) {
+                        currentImageList = files.map(file => `${baseUrl}/${hourDir}/${file}`); // Build full URLs
+                        imageIndex = 0; // Reset to first image
+                        displayNextImage(); // Start displaying images
+                    } else {
+                        console.warn(`No images found in directory: ${hourDir}`);
+                        useFallbackImage();
+                    }
+                } else {
+                    console.warn(`Failed to fetch image list for: ${hourDir}`);
+                    useFallbackImage();
+                }
+            } catch (error) {
+                console.error(`Error fetching image list: ${hourDir}`, error);
+                useFallbackImage();
+            }
+        }
+
+        function displayNextImage() {
+            if (currentImageList.length > 0) {
+                const imageUrl = currentImageList[imageIndex];
+                console.log(`Displaying image: ${imageUrl}`);
+                document.getElementById("food-image").src = imageUrl;
+                imageIndex = (imageIndex + 1) % currentImageList.length; // Loop to the next image
+            } else {
+                useFallbackImage();
+            }
+        }
+
+        function useFallbackImage() {
+            document.getElementById("food-image").src = "https://via.placeholder.com/1920x1080.png?text=No+Image+Available";
+        }
+
+        // Initialize and periodically update images
+        updateTime();
+        setInterval(updateTime, 60000); // Update every minute
+        setInterval(displayNextImage, 10000);
+    </script>
+</body>
