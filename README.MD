@@ -1,4 +1,4 @@
-![alt text](static/cclogofull.png)
+![alt text](static/githublogo.jpg)
 
 
 🍽️ Welcome to Conscious Cravings - where you get to curate a world where your cravings are aligned with your wellness goals. We take the concept of "selfertising" and present you with a personal, always-on visual reminder of the foods you choose to inspire and motivate healthier eating habits 
@@ -10,18 +10,16 @@
 
 # 🛠️ Installation and Usage
 
-
 We provide two ways to deploy Conscious Cravings:
 
-1. Cloning the GitHub repository (for developers and tinkerers).
+1. Cloning the GitHub repository
 
-2. Using the prebuilt Docker Hub image (for quick and easy deployment).
-
+2. Using the prebuilt Docker Hub image
 
 # Option 1: Clone and Build from GitHub
 ## Requirements:
-Docker installed on your system
-Optionally, Git installed for cloning the repository
+- Docker
+- Git
 
 ## Steps:
 1. Clone the GitHub repository:
