@@ -1,4 +1,4 @@
-![alt text](static/cclogofull.png)
+![alt text](static/githublogo.jpg)
 
 
 🍽️ Welcome to Conscious Cravings - where you get to curate a world where your cravings are aligned with your wellness goals. We take the concept of "selfertising" and present you with a personal, always-on visual reminder of the foods you choose to inspire and motivate healthier eating habits 
