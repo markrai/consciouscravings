@@ -1,0 +1,11 @@
+version: '3.8'
+
+services:
+  conscious-cravings:
+    image: markraidc/conscious-cravings:latest
+    container_name: conscious-cravings
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./images:/app/images
+    restart: unless-stopped

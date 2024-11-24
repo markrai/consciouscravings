@@ -8,10 +8,57 @@
 🚀 The best part is, that our app can be used just about any way you want! Feel free to display motivational quotes, family photos, or NLP-inspired affirmations for every hour of the day! 
 
 
-# Instructions:
+# 🛠️ Installation and Usage
 
-1. docker build -t conscious-cravings .
 
-2. docker run -p 8000:8000 -v images:/app/images conscious-cravings
+We provide two ways to deploy Conscious Cravings:
 
-3. http://127.0.0.1:8000/
+1. Cloning the GitHub repository (for developers and tinkerers).
+
+2. Using the prebuilt Docker Hub image (for quick and easy deployment).
+
+
+# Option 1: Clone and Build from GitHub
+## Requirements:
+Docker installed on your system
+Optionally, Git installed for cloning the repository
+
+## Steps:
+1. Clone the GitHub repository:
+
+`git clone https://github.com/your-username/conscious-cravings.git`
+`cd conscious-cravings`
+
+
+2. Build the Docker image locally:
+
+`docker build -t conscious-cravings .`
+
+
+3. Run the container:
+
+`docker run -p 8000:8000 -v $(pwd)/images:/app/images conscious-cravings` (on Linux)
+`docker run -p 8000:8000 -v images:/app/images conscious-cravings` (in Windows)
+
+4. Access the app in your browser:
+
+- Open: http://127.0.0.1:8000/
+
+
+# Option 2: Pull Prebuilt Image from Docker Hub
+
+## Steps:
+
+1. Pull the prebuilt Docker image:
+
+`docker pull markraidc/conscious-cravings:latest`
+
+2. Run the container:
+
+`docker run -p 8000:8000 -v /images:/app/images your-dockerhub-username/conscious-cravings`
+
+3. Navigate to:
+
+- http://127.0.0.1:8000/
+
+
