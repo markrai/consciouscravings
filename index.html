@@ -6,16 +6,29 @@
         <div id="date"></div>
     </div>
 
+    <button id="settings-button" onclick="toggleModal()">⚙️ Settings</button>
+
+    <!-- Modal for Settings -->
+    <div id="settings-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="toggleModal()">&times;</span>
+            <h2>Settings</h2>
+            <label for="interval-slider">Image Change Interval:</label>
+            <input type="range" id="interval-slider" min="5" max="60" step="5" value="10" oninput="updateIntervalLabel(this.value)">
+            <span id="interval-value">10</span> seconds
+            <br><br>
+            <button onclick="applyInterval()">Apply</button>
+        </div>
+    </div>
+
     <style>
-        html,
-        body {
+        html, body {
             margin: 0;
             padding: 0;
             width: 100%;
             height: 100%;
             overflow: hidden;
             background-color: #000;
-            /* Fallback background if no image loads */
         }
 
         img {
@@ -28,7 +41,6 @@
             object-position: center;
         }
 
-        /* Current time and date display */
         #current-time {
             position: absolute;
             bottom: 10px;
@@ -53,7 +65,6 @@
             opacity: 80%;
         }
 
-
         #logo {
             position: fixed;
             bottom: 10px;
@@ -61,6 +72,49 @@
             width: 200px;
             height: auto;
             z-index: 10;
+        }
+
+        #settings-button {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            padding: 10px 15px;
+            font-size: 16px;
+            cursor: pointer;
+            z-index: 10;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            z-index: 20;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            width: 300px;
+            text-align: center;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        input[type="range"] {
+            width: 100%;
         }
     </style>
 
@@ -75,20 +129,39 @@
 
         let imageIndex = 0;
         let currentImageList = [];
+        let displayInterval = 10000; // Default interval in milliseconds
+        let intervalID;
+
+        function toggleModal() {
+            const modal = document.getElementById("settings-modal");
+            modal.style.display = modal.style.display === "flex" ? "none" : "flex";
+        }
+
+        function updateIntervalLabel(value) {
+            document.getElementById("interval-value").textContent = value;
+        }
+
+        function applyInterval() {
+            const newInterval = parseInt(document.getElementById("interval-slider").value, 10) * 1000; // Convert to ms
+            displayInterval = newInterval;
+            resetInterval();
+            toggleModal();
+        }
+
+        function resetInterval() {
+            clearInterval(intervalID);
+            intervalID = setInterval(displayNextImage, displayInterval);
+        }
 
         async function updateTime() {
             const now = new Date();
             const currentHourIndex = now.getHours();
             const currentHourDir = hours[currentHourIndex];
 
-            // Format the time as before
             const formattedTime = now.toLocaleTimeString([], { hour: "2-digit", minute: "2-digit", hour12: true });
-
-            // Format the date to "Nov 24 2024"
             const options = { month: "short", day: "numeric", year: "numeric" };
             const formattedDate = now.toLocaleDateString("en-US", options).replace(",", "");
 
-            // Update the DOM
             document.getElementById("time").textContent = formattedTime;
             document.getElementById("date").textContent = formattedDate;
 
@@ -96,18 +169,17 @@
             await loadImagesForHour(currentHourDir);
         }
 
-
         async function loadImagesForHour(hourDir) {
             const listUrl = `${baseUrl}/${hourDir}/`;
 
             try {
                 const response = await fetch(listUrl);
                 if (response.ok) {
-                    const files = await response.json(); // List of image files
+                    const files = await response.json();
                     if (files.length > 0) {
-                        currentImageList = files.map(file => `${baseUrl}/${hourDir}/${file}`); // Build full URLs
-                        imageIndex = 0; // Reset to first image
-                        displayNextImage(); // Start displaying images
+                        currentImageList = files.map(file => `${baseUrl}/${hourDir}/${file}`);
+                        imageIndex = 0;
+                        displayNextImage();
                     } else {
                         console.warn(`No images found in directory: ${hourDir}`);
                         useFallbackImage();
@@ -127,7 +199,7 @@
                 const imageUrl = currentImageList[imageIndex];
                 console.log(`Displaying image: ${imageUrl}`);
                 document.getElementById("food-image").src = imageUrl;
-                imageIndex = (imageIndex + 1) % currentImageList.length; // Loop to the next image
+                imageIndex = (imageIndex + 1) % currentImageList.length;
             } else {
                 useFallbackImage();
             }
@@ -137,9 +209,8 @@
             document.getElementById("food-image").src = "https://via.placeholder.com/1920x1080.png?text=No+Image+Available";
         }
 
-        // Initialize and periodically update images
         updateTime();
-        setInterval(updateTime, 60000); // Update every minute
-        setInterval(displayNextImage, 10000);
+        setInterval(updateTime, 60000);
+        resetInterval(); // Start the image cycling
     </script>
 </body>
