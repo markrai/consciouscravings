@@ -4,7 +4,10 @@
 
 🥗 Let your selections guide you toward mindful choices, turning conscious cravings into powerful, everyday actions. Find out how the simple power of imagery transforms your relationship with what you eat.
 
-🚀 The best part is, that our app can be used just about any way you want! Feel free to display motivational quotes, family photos, or NLP-inspired affirmations for every hour of the day! 
+🚀 The best part is, that our app can be used just about any way you want! Feel free to display motivational quotes, family photos, or NLP-inspired affirmations for every hour of the day!
+
+[promotional video](https://youtu.be/uQ1Y6w5KGiA)
+
 
 
 # 🛠️ Installation and Usage
