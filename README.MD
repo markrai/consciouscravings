@@ -64,9 +64,7 @@ We provide two ways to deploy Conscious Cravings:
 
 ![alt text](static/hours.jpg)
 
-- In the index.html, change the frequency of how often the images for that hour change, in milliseconds on this line:
-`setInterval(displayNextImage, 10000);`
-
+- Click on the Conscious Cravings logo on the top left to set the image change interval
 
 ![alt text](static/spinach.jpg)
 
