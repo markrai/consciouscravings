@@ -70,3 +70,7 @@ We provide two ways to deploy Conscious Cravings:
 
 ![alt text](static/spinach.jpg)
 
+# 💁🏻 Need help? Comments? Suggestions?
+
+- markraidc@gmail.com
+
