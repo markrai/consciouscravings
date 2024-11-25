@@ -6,8 +6,6 @@
 
 🚀 The best part is, that our app can be used just about any way you want! Feel free to display motivational quotes, family photos, or NLP-inspired affirmations for every hour of the day!
 
-[promotional video](https://youtu.be/uQ1Y6w5KGiA)
-
 
 
 # 🛠️ Installation and Usage
@@ -74,4 +72,4 @@ We provide two ways to deploy Conscious Cravings:
 # 💁🏻 Need help? Comments? Suggestions?
 
 - markraidc@gmail.com
-
+- [promotional video](https://youtu.be/uQ1Y6w5KGiA)
