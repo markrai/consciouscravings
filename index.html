@@ -1,12 +1,10 @@
 <body>
-    <img id="logo" src="static/cclogofull.png" alt="CC Logo">
+    <img id="logo" src="static/cclogofull.png" alt="CC Logo" onclick="toggleModal()">
     <img id="food-image" src="" alt="Food Item">
     <div id="current-time">
         <div id="time"></div>
         <div id="date"></div>
     </div>
-
-    <button id="settings-button" onclick="toggleModal()">⚙️ Settings</button>
 
     <!-- Modal for Settings -->
     <div id="settings-modal" class="modal">
@@ -72,16 +70,7 @@
             width: 200px;
             height: auto;
             z-index: 10;
-        }
-
-        #settings-button {
-            position: fixed;
-            top: 10px;
-            right: 10px;
-            padding: 10px 15px;
-            font-size: 16px;
             cursor: pointer;
-            z-index: 10;
         }
 
         .modal {
