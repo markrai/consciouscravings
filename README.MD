@@ -26,7 +26,7 @@ We provide two ways to deploy Conscious Cravings:
 ## Steps:
 1. Clone the GitHub repository:
 
-`git clone https://github.com/your-username/conscious-cravings.git`
+`git clone https://github.com/markrai/conscious-cravings.git`
 `cd conscious-cravings`
 
 
@@ -55,7 +55,7 @@ We provide two ways to deploy Conscious Cravings:
 
 2. Run the container:
 
-`docker run -p 8000:8000 -v /images:/app/images your-dockerhub-username/conscious-cravings`
+`docker run -p 8000:8000 -v /images:/app/images markraidc/conscious-cravings`
 
 3. Navigate to:
 
